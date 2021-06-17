@@ -19,10 +19,20 @@ public class GameController : MonoBehaviour
 
     MovementScript ms;
     MiniButton mb;
+    GameObject[] enemies;
 
 
 
     float timeRemaining;
+
+    void Start()
+    {
+
+      ms = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
+      sb = GameObject.FindGameObjectWithTag("SpawnButton").GetComponent<SpawnButton>();
+      enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+    }
 
 
     void Update()
@@ -38,6 +48,10 @@ public class GameController : MonoBehaviour
           else
           {
             matchAction();
+            foreach(GameObject enemi in enemies)
+            {
+              enemi.GetComponent<EnemyBase>().matchAction();
+            }
             timeRemaining = timeForTimer;
 
             //started = false;
@@ -100,7 +114,7 @@ public class GameController : MonoBehaviour
     {
       if(order.Count > i)
       {
-        ms = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
+
         switch (order[i])
         {
           case 1:
@@ -140,7 +154,7 @@ public class GameController : MonoBehaviour
 
     public void matchList()
     {
-      sb = GameObject.FindGameObjectWithTag("SpawnButton").GetComponent<SpawnButton>();
+
 
 
       s = 0;

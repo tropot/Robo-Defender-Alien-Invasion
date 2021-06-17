@@ -28,15 +28,8 @@ public class MovementScript : MonoBehaviour
   void Update()
   {
 
-      if(transform.position == movePoint.position)
-      {
-        animator.SetFloat("Speed",0);
-      }
-      else
-      {
-        animator.SetFloat("Speed",1);
-      }
 
+      animator.SetFloat("Speed", 0);
       transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
 
@@ -62,6 +55,8 @@ public class MovementScript : MonoBehaviour
       if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(moveDirX, moveDirY,0f), .2f, whatStopsMovement))
       {
         movePoint.position += new Vector3(moveDirX,moveDirY,0f);
+        animator.SetFloat("Speed", 1);
+
 
       }
     }
