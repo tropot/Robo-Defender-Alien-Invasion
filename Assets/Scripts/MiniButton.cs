@@ -10,7 +10,10 @@ public class MiniButton : MonoBehaviour
   public int idMini = 1;
   GameController gc;
 
-
+  void Start()
+  {
+    LeanTween.scale(gameObject,new Vector3(1,1,1), 0.1f);
+  }
 
 
 
@@ -18,36 +21,17 @@ public class MiniButton : MonoBehaviour
   {
     gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     gc.listEdit(idMini);
-    Object.Destroy(this.gameObject);
+    gc.matchGrid(gc.currentTab,0);
   }
   public void des()
   {
-    Object.Destroy(this.gameObject);
+      Object.Destroy(this.gameObject);
+
   }
 
-  void Update()
-  {
-    if(CrossPlatformInputManager.GetButtonDown("Left"))
-    {
-      Object.Destroy(this.gameObject);
-    }
-    if(CrossPlatformInputManager.GetButtonDown("Right"))
-    {
-      Object.Destroy(this.gameObject);
-    }
-    if(CrossPlatformInputManager.GetButtonDown("Move"))
-    {
-      Object.Destroy(this.gameObject);
-    }
-    if(CrossPlatformInputManager.GetButtonDown("Attack"))
-    {
-      Object.Destroy(this.gameObject);
-    }
-    if(CrossPlatformInputManager.GetButtonDown("ds"))
-    {
-      Object.Destroy(this.gameObject);
-    }
-  }
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovementScript : MonoBehaviour
 {
@@ -10,13 +11,14 @@ public class MovementScript : MonoBehaviour
   public float rotSpeed = 5f;
   public Transform movePoint;
   Transform rotPoint;
-
+  public Attack attackScript;
   public LayerMask whatStopsMovement;
+  public string moveAnimationName;
 
   public int curentOrientation = 1;
   int moveDirX = 0;
   int moveDirY = 0;
-
+  public bool isEnmi = false;
 
 
   void Start()
@@ -29,7 +31,7 @@ public class MovementScript : MonoBehaviour
   {
 
 
-      animator.SetFloat("Speed", 0);
+
       transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
 
@@ -45,8 +47,15 @@ public class MovementScript : MonoBehaviour
   }
 
 
-
-
+  public void death()
+  {
+    PlayerPrefs.SetInt("isExecutingNeeded", 0);
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+  }
+  public void animateDeath()
+  {
+    animator.Play("Player_death");
+  }
 
   public void move()
   {
@@ -55,7 +64,7 @@ public class MovementScript : MonoBehaviour
       if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(moveDirX, moveDirY,0f), .2f, whatStopsMovement))
       {
         movePoint.position += new Vector3(moveDirX,moveDirY,0f);
-        animator.SetFloat("Speed", 1);
+        animator.Play(moveAnimationName);
 
 
       }
@@ -63,8 +72,27 @@ public class MovementScript : MonoBehaviour
   }
 
 
+public void pAttack()
+{
+  attackScript.playerAttack();
+}
+public void attack()
+{
+  if(isEnmi == false)
+  {
+    animator.Play("Player_attack");
 
+  }
+  else
+  {
+    attackScript.enemyAttack();
+  }
+}
 
+public void enemiBoom()
+{
+  attackScript.enemyGoesBoom();
+}
 
 
   public void InputLeft()

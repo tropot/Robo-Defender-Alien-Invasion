@@ -9,12 +9,30 @@ public class SpawnButton : MonoBehaviour
     public GameObject a;
     public GameObject l;
     public GameObject r;
+    public GameObject FOne;
+    public GameObject FTwo;
 
     public GameObject placeHolder;
 
     public int ord;
     GameObject p;
 
+
+    public void sFOne()
+    {
+      p = Instantiate(FOne);
+      MiniButton t = p.GetComponent<MiniButton>();
+      t.idMini = ord;
+      p.transform.SetParent(placeHolder.transform);
+    }
+
+    public void sFTwo()
+    {
+      p = Instantiate(FTwo);
+      MiniButton t = p.GetComponent<MiniButton>();
+      t.idMini = ord;
+      p.transform.SetParent(placeHolder.transform);
+    }
 
     public void sM()
     {
@@ -47,7 +65,7 @@ public class SpawnButton : MonoBehaviour
       t.idMini = ord;
       p.transform.SetParent(placeHolder.transform);
     }
-    
+
 
 
 }

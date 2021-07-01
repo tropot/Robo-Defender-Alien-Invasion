@@ -10,14 +10,39 @@ public class EnemyBase : MonoBehaviour
     public int maxHealth = 2;
     int currentHealth;
     public List<int> order = new List<int>();
-
-
+    public bool isBig = false;
+    float timeRemaining = 0.1f;
+    GameController gc;
 
     void Start()
     {
       currentHealth = maxHealth;
+      gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
+
+    void Update()
+    {
+      if (timeRemaining > 0)
+      {
+        timeRemaining -= Time.deltaTime;
+      }
+      else
+      {
+        if(isBig == true)
+        {
+          ms.attack();
+        }
+        else
+        {
+          ms.enemiBoom();
+        }
+
+        timeRemaining = 0.1f;
+
+        //started = false;
+      }
+    }
 
     public void TakeDamage(int damage)
     {
@@ -29,16 +54,17 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
-      Debug.Log("enemy died");
+      gc.nrOfEnemies -= 1;
+      Object.Destroy(this.gameObject);
     }
 
     public void matchAction()
     {
       if(order.Count > i)
       {
-        
+
         switch (order[i])
         {
           case 1:
@@ -61,7 +87,6 @@ public class EnemyBase : MonoBehaviour
         i += 1;
       }
     }
-
 
 
 }
