@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: -8546830147781793680
     second: inGameButtons_6
+  - first:
+      213: 3870653024155781385
+    second: inGameButtons_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -278,6 +281,27 @@ TextureImporter:
       bones: []
       spriteID: 078eddd734f836980800000000000000
       internalID: -8546830147781793680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: inGameButtons_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 909c899fa6257b530800000000000000
+      internalID: 3870653024155781385
       vertices: []
       indices: 
       edges: []

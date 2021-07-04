@@ -18,7 +18,6 @@ public class MovementScript : MonoBehaviour
   public int curentOrientation = 1;
   int moveDirX = 0;
   int moveDirY = 0;
-  public bool isEnmi = false;
 
 
   void Start()
@@ -78,21 +77,12 @@ public void pAttack()
 }
 public void attack()
 {
-  if(isEnmi == false)
-  {
-    animator.Play("Player_attack");
 
-  }
-  else
-  {
-    attackScript.enemyAttack();
-  }
+  animator.Play("Player_attack");
+
 }
 
-public void enemiBoom()
-{
-  attackScript.enemyGoesBoom();
-}
+
 
 
   public void InputLeft()

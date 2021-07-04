@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
 
-    public MovementScript ms;
+    public EnemiMovementScript ms;
     int i = 0;
     public int maxHealth = 2;
     int currentHealth;
@@ -13,6 +13,7 @@ public class EnemyBase : MonoBehaviour
     public bool isBig = false;
     float timeRemaining = 0.1f;
     GameController gc;
+    private bool Died = false;
 
     void Start()
     {
@@ -44,20 +45,21 @@ public class EnemyBase : MonoBehaviour
       }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        currentHealth -= damage;
 
-        if(currentHealth <= 0 )
+        if(Died == false)
         {
-          Die();
+          Died = true;
+          ms.animateDeath();
         }
+
     }
 
     public void Die()
     {
       gc.nrOfEnemies -= 1;
-      Object.Destroy(this.gameObject);
+      Destroy(gameObject);
     }
 
     public void matchAction()
