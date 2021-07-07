@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
       PlayerPrefsExtra.SetList("orderFOne", orderFOne);
       PlayerPrefsExtra.SetList("orderFTwo", orderFTwo);
       PlayerPrefs.SetInt("isExecutingNeeded", 0);
+      Time.timeScale = 1f;
     }
 
 

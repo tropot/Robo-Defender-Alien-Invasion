@@ -11,9 +11,9 @@ public class SpawnButton : MonoBehaviour
     public GameObject r;
     public GameObject FOne;
     public GameObject FTwo;
-
     public GameObject placeHolder;
 
+    public int grid;
     public int ord;
     GameObject p;
 
@@ -22,7 +22,9 @@ public class SpawnButton : MonoBehaviour
     {
       p = Instantiate(FOne);
       MiniButton t = p.GetComponent<MiniButton>();
+
       t.idMini = ord;
+      t.gridOnWitchSpawned = grid;
       p.transform.SetParent(placeHolder.transform);
     }
 
@@ -30,7 +32,9 @@ public class SpawnButton : MonoBehaviour
     {
       p = Instantiate(FTwo);
       MiniButton t = p.GetComponent<MiniButton>();
+
       t.idMini = ord;
+      t.gridOnWitchSpawned = grid;
       p.transform.SetParent(placeHolder.transform);
     }
 
@@ -38,7 +42,9 @@ public class SpawnButton : MonoBehaviour
     {
       p = Instantiate(m);
       MiniButton t = p.GetComponent<MiniButton>();
+
       t.idMini = ord;
+      t.gridOnWitchSpawned = grid;
       p.transform.SetParent(placeHolder.transform);
     }
 
@@ -46,7 +52,9 @@ public class SpawnButton : MonoBehaviour
     {
       p = Instantiate(a);
       MiniButton t = p.GetComponent<MiniButton>();
+
       t.idMini = ord;
+      t.gridOnWitchSpawned = grid;
       p.transform.SetParent(placeHolder.transform);
     }
 
@@ -54,7 +62,9 @@ public class SpawnButton : MonoBehaviour
     {
       p = Instantiate(r);
       MiniButton t = p.GetComponent<MiniButton>();
+
       t.idMini = ord;
+      t.gridOnWitchSpawned = grid;
       p.transform.SetParent(placeHolder.transform);
     }
 
@@ -62,9 +72,12 @@ public class SpawnButton : MonoBehaviour
     {
       p = Instantiate(l);
       MiniButton t = p.GetComponent<MiniButton>();
+
       t.idMini = ord;
+      t.gridOnWitchSpawned = grid;
       p.transform.SetParent(placeHolder.transform);
     }
+
 
 
 

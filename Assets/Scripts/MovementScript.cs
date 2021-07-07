@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MovementScript : MonoBehaviour
 {
-
+  private int currentTower = 0;
   public Animator animator;
   public float moveSpeed = 5f;
   public float rotSpeed = 5f;
@@ -19,9 +19,20 @@ public class MovementScript : MonoBehaviour
   int moveDirX = 0;
   int moveDirY = 0;
 
-
+  public Sprite[] baseSprites;
+  public GameObject baseComponent;
+  public Sprite[] towerSprites;
+  public GameObject towerSprite;
+  private int currentBaseSprite = 0;
+  void Awake()
+  {
+    currentBaseSprite = PlayerPrefs.GetInt("currentBaseSprite");
+    currentTower = PlayerPrefs.GetInt("currentTower");
+  }
   void Start()
   {
+
+      SetSprite(currentBaseSprite,currentTower);
       movePoint.parent = null;
       setRotation();
   }
@@ -73,12 +84,34 @@ public class MovementScript : MonoBehaviour
 
 public void pAttack()
 {
-  attackScript.playerAttack();
+  switch (currentTower)
+  {
+    case 0:
+      attackScript.playerAttack();
+      break;
+    case 1:
+      attackScript.playerAueAttack();
+      break;
+    case 2:
+      attackScript.playerLongAttack();
+      break;
+  }
 }
 public void attack()
 {
+  switch (currentTower)
+  {
+    case 0:
+      animator.Play("Player_attack");
+      break;
+    case 1:
+      animator.Play("WideAttack");
+      break;
+    case 2:
+      animator.Play("LongAttack");
+      break;
+  }
 
-  animator.Play("Player_attack");
 
 }
 
@@ -157,6 +190,12 @@ public void attack()
         break;
         //Down
     }
+  }
+
+  void SetSprite(int index,int number)
+  {
+    baseComponent.GetComponent<SpriteRenderer> ().sprite = baseSprites[index];
+    towerSprite.GetComponent<SpriteRenderer> ().sprite = towerSprites[number];
   }
 
 

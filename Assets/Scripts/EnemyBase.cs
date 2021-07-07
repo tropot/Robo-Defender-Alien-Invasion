@@ -7,8 +7,6 @@ public class EnemyBase : MonoBehaviour
 
     public EnemiMovementScript ms;
     int i = 0;
-    public int maxHealth = 2;
-    int currentHealth;
     public List<int> order = new List<int>();
     public bool isBig = false;
     float timeRemaining = 0.1f;
@@ -17,7 +15,6 @@ public class EnemyBase : MonoBehaviour
 
     void Start()
     {
-      currentHealth = maxHealth;
       gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
@@ -47,10 +44,10 @@ public class EnemyBase : MonoBehaviour
 
     public void TakeDamage()
     {
-
         if(Died == false)
         {
           Died = true;
+          ms.moveSpeed = 0;
           ms.animateDeath();
         }
 

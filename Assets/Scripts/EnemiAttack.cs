@@ -27,6 +27,7 @@ public class EnemiAttack : MonoBehaviour
       player.GetComponent<MovementScript>().animateDeath();
     }
   }
+  
   public void enemyGoesBoom()
   {
     Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);

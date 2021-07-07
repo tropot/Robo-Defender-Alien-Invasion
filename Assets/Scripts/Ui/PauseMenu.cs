@@ -10,28 +10,40 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUi;
-
+    private float gameSpeed = 1f;
 
     void Start ()
       {
         pauseMenuUi.SetActive(false);
+        if(Time.timeScale == 0f)
+        {
+          Time.timeScale = gameSpeed;
+        }
       }
 
     void Update()
     {
       if(CrossPlatformInputManager.GetButtonDown("Pause"))
       {
-          if(GameIsPaused == false)
+          if(GameIsPaused)
+          {
+            Resume();
+          }
+          else
           {
             Pause();
           }
+      }
+      if(CrossPlatformInputManager.GetButtonDown("Resume"))
+      {
+        Resume();
       }
     }
 
     public void Resume()
     {
       pauseMenuUi.SetActive(false);
-      Time.timeScale = 1f;
+      Time.timeScale = gameSpeed;
       GameIsPaused = false;
     }
 
@@ -45,7 +57,20 @@ public class PauseMenu : MonoBehaviour
     public void goToMainMenu()
     {
       GameIsPaused = false;
-      Time.timeScale = 1f;
+      Time.timeScale = gameSpeed;
       SceneManager.LoadScene(sceneBuildIndex:0);
+    }
+    public void setGameSpeed()
+    {
+      if(gameSpeed == 1f)
+      {
+        gameSpeed = 2f;
+      }
+      else
+      {
+        gameSpeed = 1f;
+      }
+
+      Time.timeScale = gameSpeed;
     }
 }

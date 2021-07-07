@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public List<int> orderFTwo = new List<int>();
 
     public List<int> actionOrder = new List<int>();
-
+    public Canvas mainCanvas;
     public Transform pointOne;
     public Transform pointTwo;
     public LayerMask enemyLayers;
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
     MovementScript ms;
     MiniButton mb;
     GameObject[] enemies;
-    GameObject[] mButtons;
+    public GameObject[] mButtons;
     public Text cText;
 
     public int maxCommands = 5;
@@ -57,19 +57,20 @@ public class GameController : MonoBehaviour
       ms = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
       sb = GameObject.FindGameObjectWithTag("SpawnButton").GetComponent<SpawnButton>();
 
-
+      order = PlayerPrefsExtra.GetList<int> ("order", new List<int>());
+      orderFOne = PlayerPrefsExtra.GetList<int> ("orderFOne", new List<int>());
+      orderFTwo = PlayerPrefsExtra.GetList<int> ("orderFTwo", new List<int>());
+      isExecutingNeeded = PlayerPrefs.GetInt("isExecutingNeeded");
 
 
 
     }
     void Start()
     {
-      order = PlayerPrefsExtra.GetList<int> ("order", new List<int>());
-      orderFOne = PlayerPrefsExtra.GetList<int> ("orderFOne", new List<int>());
-      orderFTwo = PlayerPrefsExtra.GetList<int> ("orderFTwo", new List<int>());
+
       setText(order.Count,maxCommands);
       matchGrid(currentTab,0);
-      isExecutingNeeded = PlayerPrefs.GetInt("isExecutingNeeded");
+
 
       if(isExecutingNeeded > 0)
       {
@@ -89,8 +90,6 @@ public class GameController : MonoBehaviour
       {
       if(actionOrder.Count > i)
       {
-        if (started)
-        {
           if (timeRemaining > 0)
           {
             timeRemaining -= Time.deltaTime;
@@ -103,7 +102,6 @@ public class GameController : MonoBehaviour
 
           }
 
-        }
       }
       else
       {
@@ -115,14 +113,11 @@ public class GameController : MonoBehaviour
     }
     if(nrOfEnemies == 0)
     {
-      order.Clear();
-      orderFOne.Clear();
-      orderFTwo.Clear();
-      saveOrders();
+
       isExecutingNeeded = 0;
       PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
-      Scene scene = SceneManager.GetActiveScene();
-      SceneManager.LoadScene(sceneBuildIndex:scene.buildIndex+1);
+      mainCanvas.GetComponent<NextLevelUi>().ActivateUi();
+
     }
     if(started)
     {
@@ -196,7 +191,10 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
         resetScene();
       }
-
+      if(CrossPlatformInputManager.GetButtonDown("Activate"))
+      {
+        showCurrentAction();
+      }
 
 
     }
@@ -209,6 +207,7 @@ public class GameController : MonoBehaviour
       started = true;
       i = 0;
       matchAction();
+
       enemies = GameObject.FindGameObjectsWithTag("Enemy");
       foreach(GameObject enemi in enemies)
       {
@@ -229,12 +228,20 @@ public class GameController : MonoBehaviour
     {
       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    void showCurrentAction()
+    {
+      mButtons = GameObject.FindGameObjectsWithTag("MiniButton");
 
+      foreach(GameObject obj in mButtons)
+      {
+        obj.GetComponent<MiniButton>().currentAction(i,currentTab);
+      }
+    }
     void matchAction()
     {
       if(actionOrder.Count > i)
       {
-
+        showCurrentAction();
         switch (actionOrder[i])
         {
           case 1:
@@ -281,8 +288,8 @@ public class GameController : MonoBehaviour
 
     public void matchActionList()
     {
-
       s = 0;
+
       for(int p = 0;p < order.Count; p++)
       {
         switch (order[s])
@@ -290,24 +297,29 @@ public class GameController : MonoBehaviour
           case 1:
             //move
             actionOrder.Add(1);
+
             break;
           case 2:
             //right
             actionOrder.Add(2);
+
             break;
           case 3:
             //left
             actionOrder.Add(3);
+
             break;
           case 4:
             //attack
             actionOrder.Add(4);
+
             break;
           case 5:
             //F1
             for (int i = 0; i < orderFOne.Count; i++)
             {
                 actionOrder.Add(orderFOne[i]);
+
             }
             break;
           case 6:
@@ -315,6 +327,7 @@ public class GameController : MonoBehaviour
             for (int i = 0; i < orderFTwo.Count; i++)
             {
                 actionOrder.Add(orderFTwo[i]);
+
             }
 
             break;
@@ -469,7 +482,7 @@ public class GameController : MonoBehaviour
       {
         case 1:
           //F1
-          if(action > 0 & orderFOne.Count < maxCommands)
+          if(action > 0 & orderFOne.Count < maxCommands & action != 5 & action != 6)
           {
             orderFOne.Add(action);
           }
@@ -478,7 +491,7 @@ public class GameController : MonoBehaviour
           break;
         case 2:
           //F2
-          if(action > 0 & orderFTwo.Count < maxCommands)
+          if(action > 0 & orderFTwo.Count < maxCommands & action != 5 & action != 6)
           {
             orderFTwo.Add(action);
           }

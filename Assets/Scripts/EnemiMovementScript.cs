@@ -44,10 +44,7 @@ public class EnemiMovementScript : MonoBehaviour
   }
 
 
-  public void death()
-  {
-    Destroy(gameObject);
-  }
+  
   public void animateDeath()
   {
     animator.SetTrigger("Death");
