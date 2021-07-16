@@ -38,7 +38,7 @@ public class MiniButton : MonoBehaviour
   public void currentAction(int index,int grid)
   {
 
-  
+
 
 
     if(index == idMini & grid == gridOnWitchSpawned)

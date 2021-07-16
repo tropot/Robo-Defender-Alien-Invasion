@@ -548,3 +548,223 @@ C# parse time         : 432ms
 candidates check time : 64ms
 console write time    : 0ms
 
+[api-updater (non-obsolete-error-filter)] 7/7/2021 8:55:09 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 579.398ms
+moved types parse time: 140ms
+candidates parse time : 2ms
+C# parse time         : 602ms
+candidates check time : 73ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/7/2021 8:55:37 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 131.877ms
+moved types parse time: 118ms
+candidates parse time : 2ms
+C# parse time         : 415ms
+candidates check time : 77ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/7/2021 9:47:39 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 139.352ms
+moved types parse time: 116ms
+candidates parse time : 2ms
+C# parse time         : 465ms
+candidates check time : 105ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:05:43 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 788.291ms
+moved types parse time: 128ms
+candidates parse time : 1ms
+C# parse time         : 680ms
+candidates check time : 110ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:10:04 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 100.369ms
+moved types parse time: 117ms
+candidates parse time : 2ms
+C# parse time         : 445ms
+candidates check time : 87ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:22:15 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 841.079ms
+moved types parse time: 165ms
+candidates parse time : 2ms
+C# parse time         : 809ms
+candidates check time : 108ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:24:15 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 160.691ms
+moved types parse time: 115ms
+candidates parse time : 1ms
+C# parse time         : 472ms
+candidates check time : 116ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:26:47 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 122.476ms
+moved types parse time: 112ms
+candidates parse time : 2ms
+C# parse time         : 483ms
+candidates check time : 103ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:31:32 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 143.927ms
+moved types parse time: 104ms
+candidates parse time : 1ms
+C# parse time         : 514ms
+candidates check time : 108ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:34:15 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 117.93ms
+moved types parse time: 114ms
+candidates parse time : 2ms
+C# parse time         : 470ms
+candidates check time : 103ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:34:43 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 114.861ms
+moved types parse time: 117ms
+candidates parse time : 1ms
+C# parse time         : 468ms
+candidates check time : 94ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:36:20 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 135.721ms
+moved types parse time: 115ms
+candidates parse time : 6ms
+C# parse time         : 473ms
+candidates check time : 113ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:36:35 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 115.242ms
+moved types parse time: 115ms
+candidates parse time : 2ms
+C# parse time         : 456ms
+candidates check time : 99ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:37:29 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 115.697ms
+moved types parse time: 110ms
+candidates parse time : 2ms
+C# parse time         : 480ms
+candidates check time : 102ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:38:36 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 116.052ms
+moved types parse time: 116ms
+candidates parse time : 2ms
+C# parse time         : 476ms
+candidates check time : 71ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 2:05:00 AM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 418.029ms
+moved types parse time: 161ms
+candidates parse time : 2ms
+C# parse time         : 512ms
+candidates check time : 75ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:39:19 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 401.132ms
+moved types parse time: 146ms
+candidates parse time : 2ms
+C# parse time         : 579ms
+candidates check time : 87ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/8/2021 1:52:22 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 86.483ms
+moved types parse time: 95ms
+candidates parse time : 2ms
+C# parse time         : 464ms
+candidates check time : 81ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 7/13/2021 2:38:53 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 358.35ms
+moved types parse time: 162ms
+candidates parse time : 1ms
+C# parse time         : 556ms
+candidates check time : 83ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/13/2021 2:39:42 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 79.733ms
+moved types parse time: 114ms
+candidates parse time : 2ms
+C# parse time         : 445ms
+candidates check time : 76ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/13/2021 2:46:44 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 73.334ms
+moved types parse time: 108ms
+candidates parse time : 1ms
+C# parse time         : 377ms
+candidates check time : 72ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 7/13/2021 2:59:11 PM : Starting /home/tropot/Unity/Hub/Editor/2020.3.4f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 73.329ms
+moved types parse time: 89ms
+candidates parse time : 1ms
+C# parse time         : 397ms
+candidates check time : 60ms
+console write time    : 0ms
+

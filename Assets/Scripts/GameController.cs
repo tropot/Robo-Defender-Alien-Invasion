@@ -4,27 +4,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.UI;
+
+
+
+
+
 public class GameController : MonoBehaviour
 {
 
+    public List<Commands> order = new List<Commands>();
+    public List<Commands> orderFOne = new List<Commands>();
+    public List<Commands> orderFTwo = new List<Commands>();
+    public List<Commands> currentOrder = new List<Commands>();
+    public Stack<List<Commands>> arrayStack = new Stack<List<Commands>>();
+    public Stack<int> indexStack = new Stack<int>();
 
-
-    public List<int> order = new List<int>();
-    public List<int> orderFOne = new List<int>();
-    public List<int> orderFTwo = new List<int>();
-
-    public List<int> actionOrder = new List<int>();
     public Canvas mainCanvas;
     public Transform pointOne;
     public Transform pointTwo;
     public LayerMask enemyLayers;
     public bool started = false;
 
+    int currentIndex = 0;
+
+
+
+
     int isExecutingNeeded = 0;
 
     public int currentTab = 3;
 
-    int i = 0;
+
 
     public int s = 0;
 
@@ -57,9 +67,9 @@ public class GameController : MonoBehaviour
       ms = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
       sb = GameObject.FindGameObjectWithTag("SpawnButton").GetComponent<SpawnButton>();
 
-      order = PlayerPrefsExtra.GetList<int> ("order", new List<int>());
-      orderFOne = PlayerPrefsExtra.GetList<int> ("orderFOne", new List<int>());
-      orderFTwo = PlayerPrefsExtra.GetList<int> ("orderFTwo", new List<int>());
+      order = PlayerPrefsExtra.GetList<Commands> ("order", new List<Commands>());
+      orderFOne = PlayerPrefsExtra.GetList<Commands> ("orderFOne", new List<Commands>());
+      orderFTwo = PlayerPrefsExtra.GetList<Commands> ("orderFTwo", new List<Commands>());
       isExecutingNeeded = PlayerPrefs.GetInt("isExecutingNeeded");
 
 
@@ -67,11 +77,11 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
-
       setText(order.Count,maxCommands);
-      matchGrid(currentTab,0);
+      matchGrid(currentTab,Commands.nothing);
 
-
+      enemies = GameObject.FindGameObjectsWithTag("Enemy");
+      nrOfEnemies = enemies.Length;
       if(isExecutingNeeded > 0)
       {
         onStart();
@@ -88,28 +98,21 @@ public class GameController : MonoBehaviour
 
       if(started)
       {
-      if(actionOrder.Count > i)
-      {
-          if (timeRemaining > 0)
-          {
-            timeRemaining -= Time.deltaTime;
-          }
-          else
-          {
-            matchAction();
 
-            timeRemaining = timeForTimer;
+            if (timeRemaining > 0)
+            {
+              timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+              matchAction();
 
-          }
+              timeRemaining = timeForTimer;
 
-      }
-      else
-      {
-        started = false;
-        i = 0;
+            }
 
 
-      }
+
     }
     if(nrOfEnemies == 0)
     {
@@ -162,28 +165,28 @@ public class GameController : MonoBehaviour
       }
       if(CrossPlatformInputManager.GetButtonDown("Left"))
       {
-        matchGrid(currentTab,3);
+        matchGrid(currentTab,Commands.left);
       }
       if(CrossPlatformInputManager.GetButtonDown("Right"))
       {
-        matchGrid(currentTab,2);
+        matchGrid(currentTab,Commands.right);
       }
       if(CrossPlatformInputManager.GetButtonDown("Move"))
       {
-        matchGrid(currentTab,1);
+        matchGrid(currentTab,Commands.move);
       }
       if(CrossPlatformInputManager.GetButtonDown("Attack"))
       {
-        matchGrid(currentTab,4);
+        matchGrid(currentTab,Commands.attack);
       }
 
       if(CrossPlatformInputManager.GetButtonDown("FOne"))
       {
-        matchGrid(currentTab,5);
+        matchGrid(currentTab,Commands.fOne);
       }
       if(CrossPlatformInputManager.GetButtonDown("FTwo"))
       {
-        matchGrid(currentTab,6);
+        matchGrid(currentTab,Commands.fTwo);
       }
       if(CrossPlatformInputManager.GetButtonDown("Reset"))
       {
@@ -193,7 +196,7 @@ public class GameController : MonoBehaviour
       }
       if(CrossPlatformInputManager.GetButtonDown("Activate"))
       {
-        showCurrentAction();
+      //  showCurrentAction();
       }
 
 
@@ -201,11 +204,11 @@ public class GameController : MonoBehaviour
     void onStart()
     {
 
-      actionOrder.Clear();
-      matchActionList();
+      currentOrder = order;
+
       timeRemaining = timeForTimer;
       started = true;
-      i = 0;
+      currentIndex = 0;
       matchAction();
 
       enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -213,7 +216,7 @@ public class GameController : MonoBehaviour
       {
         enemi.GetComponent<EnemyBase>().matchAction();
       }
-      matchGrid(currentTab,0);
+      matchGrid(currentTab,Commands.nothing);
 
     }
 
@@ -228,43 +231,78 @@ public class GameController : MonoBehaviour
     {
       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    void showCurrentAction()
-    {
-      mButtons = GameObject.FindGameObjectsWithTag("MiniButton");
 
-      foreach(GameObject obj in mButtons)
-      {
-        obj.GetComponent<MiniButton>().currentAction(i,currentTab);
-      }
-    }
     void matchAction()
     {
-      if(actionOrder.Count > i)
+      //Debug.Log("currentIndex : " + currentIndex);
+      //Debug.Log("currentOrder.Count : " + currentOrder.Count);
+      if(currentOrder.Count > currentIndex)
       {
-        showCurrentAction();
-        switch (actionOrder[i])
-        {
-          case 1:
-            //move
-            ms.move();
-            break;
-          case 2:
-            //right
-            ms.InputRight();
-            break;
-          case 3:
-            //left
-            ms.InputLeft();
-            break;
-          case 4:
-            //attack
-            ms.attack();
-            break;
-        }
-        i += 1;
+        //Normal command
+        //Debug.Log("inauntru la if");
+        switchAction();
+      }
+      else if(arrayStack.Count > 0)
+      {
+        //We are inside a function and returning from it
+        //Debug.Log("inauntru la else if");
+        pop();
+
+      }
+      else
+      {
+        //When finished
+        started = false;
+        currentIndex = 0;
       }
 
+}
+/**
+ * Pushing a list to array stack then replacing it with a recieving one, and pushing the current index and replacing it with 0
+ */
+    void pushReplace(List<Commands> list)
+    {
+      arrayStack.Push(currentOrder);
+      currentOrder = list;
+      indexStack.Push(currentIndex);
+      currentIndex = 0;
     }
+
+    void pop()
+    {
+      currentOrder = arrayStack.Pop();
+      currentIndex = indexStack.Pop();
+    }
+/**
+ * Matching current action
+ */
+    void switchAction()
+    {
+      switch (currentOrder[currentIndex++])
+      {
+        case Commands.move:
+          ms.move();
+          break;
+        case Commands.right:
+          ms.InputRight();
+          break;
+        case Commands.left:
+          ms.InputLeft();
+          break;
+        case Commands.attack:
+          ms.attack();
+          break;
+        case Commands.fOne:
+           pushReplace(orderFOne);
+
+           Debug.Log("arrayStack : " + arrayStack.Count);
+           break;
+        case Commands.fTwo:
+          pushReplace(orderFTwo);
+          break;
+      }
+    }
+
     public void listEdit(int number)
     {
       switch (currentTab)
@@ -286,56 +324,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void matchActionList()
-    {
-      s = 0;
 
-      for(int p = 0;p < order.Count; p++)
-      {
-        switch (order[s])
-        {
-          case 1:
-            //move
-            actionOrder.Add(1);
-
-            break;
-          case 2:
-            //right
-            actionOrder.Add(2);
-
-            break;
-          case 3:
-            //left
-            actionOrder.Add(3);
-
-            break;
-          case 4:
-            //attack
-            actionOrder.Add(4);
-
-            break;
-          case 5:
-            //F1
-            for (int i = 0; i < orderFOne.Count; i++)
-            {
-                actionOrder.Add(orderFOne[i]);
-
-            }
-            break;
-          case 6:
-            //F2
-            for (int i = 0; i < orderFTwo.Count; i++)
-            {
-                actionOrder.Add(orderFTwo[i]);
-
-            }
-
-            break;
-        }
-        s += 1;
-
-      }
-    }
 
     public void matchList()
     {
@@ -350,32 +339,32 @@ public class GameController : MonoBehaviour
           sb.ord = s;
           switch (order[s])
           {
-            case 1:
+            case Commands.move:
               //move
               sb.ord = s;
               sb.sM();
               break;
-            case 2:
+            case Commands.right:
               //right
               sb.ord = s;
               sb.sR();
               break;
-            case 3:
+            case Commands.left:
               //left
               sb.ord = s;
               sb.sL();
               break;
-            case 4:
+            case Commands.attack:
               //attack
               sb.ord = s;
               sb.sA();
               break;
-            case 5:
+            case Commands.fOne:
               //F1
               sb.ord = s;
               sb.sFOne();
               break;
-            case 6:
+            case Commands.fTwo:
               //F2
               sb.ord = s;
               sb.sFTwo();
@@ -400,25 +389,35 @@ public class GameController : MonoBehaviour
           sbfOne.ord = s;
           switch (orderFOne[s])
           {
-            case 1:
+            case Commands.move:
               //move
               sbfOne.ord = s;
               sbfOne.sM();
               break;
-            case 2:
+            case Commands.right:
               //right
               sbfOne.ord = s;
               sbfOne.sR();
               break;
-            case 3:
+            case Commands.left:
               //left
               sbfOne.ord = s;
               sbfOne.sL();
               break;
-            case 4:
+            case Commands.attack:
               //attack
               sbfOne.ord = s;
               sbfOne.sA();
+              break;
+            case Commands.fOne:
+              //F1
+              sbfOne.ord = s;
+              sbfOne.sFOne();
+              break;
+            case Commands.fTwo:
+              //F2
+              sb.ord = s;
+              sb.sFTwo();
               break;
           }
           s += 1;
@@ -441,25 +440,35 @@ public class GameController : MonoBehaviour
           sbfTwo.ord = s;
           switch (orderFTwo[s])
           {
-            case 1:
+            case Commands.move:
               //move
               sbfTwo.ord = s;
               sbfTwo.sM();
               break;
-            case 2:
+            case Commands.right:
               //right
               sbfTwo.ord = s;
               sbfTwo.sR();
               break;
-            case 3:
+            case Commands.left:
               //left
               sbfTwo.ord = s;
               sbfTwo.sL();
               break;
-            case 4:
+            case Commands.attack:
               //attack
               sbfTwo.ord = s;
               sbfTwo.sA();
+              break;
+            case Commands.fOne:
+              //F1
+              sbfOne.ord = s;
+              sbfOne.sFOne();
+              break;
+            case Commands.fTwo:
+              //F2
+              sb.ord = s;
+              sb.sFTwo();
               break;
           }
           s += 1;
@@ -468,7 +477,7 @@ public class GameController : MonoBehaviour
     }
 
     }
-    public void matchGrid(int number,int action)
+    public void matchGrid(int number,Commands action)
     {
 
 
@@ -482,7 +491,7 @@ public class GameController : MonoBehaviour
       {
         case 1:
           //F1
-          if(action > 0 & orderFOne.Count < maxCommands & action != 5 & action != 6)
+          if(action > 0 & orderFOne.Count < maxCommands)
           {
             orderFOne.Add(action);
           }
@@ -491,7 +500,7 @@ public class GameController : MonoBehaviour
           break;
         case 2:
           //F2
-          if(action > 0 & orderFTwo.Count < maxCommands & action != 5 & action != 6)
+          if(action > 0 & orderFTwo.Count < maxCommands)
           {
             orderFTwo.Add(action);
           }
