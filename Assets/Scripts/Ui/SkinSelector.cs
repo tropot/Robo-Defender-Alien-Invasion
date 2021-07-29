@@ -30,6 +30,8 @@ public class SkinSelector : MonoBehaviour
     }
     public void NextRSprite()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
+      
       currentBaseSprite += 1;
       if(currentBaseSprite >= baseSprites.Length)
       {
@@ -41,6 +43,7 @@ public class SkinSelector : MonoBehaviour
     }
     public void NextLSprite()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
 
       if(currentBaseSprite == 0)
       {
@@ -56,6 +59,8 @@ public class SkinSelector : MonoBehaviour
     }
     public void NextRTower()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
+
       currentTower += 1;
       if(currentTower >= towerSprites.Length)
       {
@@ -67,6 +72,7 @@ public class SkinSelector : MonoBehaviour
     }
     public void NextLTower()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
 
       if(currentTower == 0)
       {

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - SpawnButtonFOne
   - SpawnButtonFTwo
+  - levelButton
   layers:
   - Default
   - TransparentFX

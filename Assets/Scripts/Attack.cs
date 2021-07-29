@@ -12,7 +12,7 @@ public class Attack : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
-
+    
 
 
     public void playerAttack()

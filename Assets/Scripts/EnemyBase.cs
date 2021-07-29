@@ -12,6 +12,9 @@ public class EnemyBase : MonoBehaviour
     float timeRemaining = 0.1f;
     GameController gc;
     private bool Died = false;
+    string[] soundNames = new string[]{"EnemiSoundOne","EnemiSoundTwo","EnemiSoundThre"};
+    string soundName;
+    int randomNr;
 
     void Start()
     {
@@ -34,6 +37,8 @@ public class EnemyBase : MonoBehaviour
         else
         {
           ms.enemiBoom();
+          
+
         }
 
         timeRemaining = 0.1f;
@@ -46,9 +51,11 @@ public class EnemyBase : MonoBehaviour
     {
         if(Died == false)
         {
+
           Died = true;
           ms.moveSpeed = 0;
           ms.animateDeath();
+          FindObjectOfType<AudioManager>().Play("EnemiDeath");
         }
 
     }
@@ -63,7 +70,9 @@ public class EnemyBase : MonoBehaviour
     {
       if(order.Count > i)
       {
-
+        randomNr = Random.Range(0, soundNames.Length-1);
+        soundName = soundNames[randomNr];
+        FindObjectOfType<AudioManager>().Play(soundName);
         switch (order[i])
         {
           case 1:

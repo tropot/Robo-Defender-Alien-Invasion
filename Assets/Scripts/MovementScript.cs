@@ -24,6 +24,9 @@ public class MovementScript : MonoBehaviour
   public Sprite[] towerSprites;
   public GameObject towerSprite;
   private int currentBaseSprite = 0;
+
+
+
   void Awake()
   {
     currentBaseSprite = PlayerPrefs.GetInt("currentBaseSprite");
@@ -69,12 +72,16 @@ public class MovementScript : MonoBehaviour
 
   public void move()
   {
+
     if(Vector3.Distance(transform.position, movePoint.position) <= .05f)
     {
       if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(moveDirX, moveDirY,0f), .2f, whatStopsMovement))
       {
         movePoint.position += new Vector3(moveDirX,moveDirY,0f);
         animator.Play(moveAnimationName);
+
+        FindObjectOfType<AudioManager>().Play("PlayerMoving");
+
 
 
       }
@@ -88,12 +95,15 @@ public void pAttack()
   {
     case 0:
       attackScript.playerAttack();
+      FindObjectOfType<AudioManager>().Play("Attack");
       break;
     case 1:
       attackScript.playerAueAttack();
+      FindObjectOfType<AudioManager>().Play("Attack");
       break;
     case 2:
       attackScript.playerLongAttack();
+      FindObjectOfType<AudioManager>().Play("AttackLong");
       break;
   }
 }
@@ -113,6 +123,7 @@ public void attack()
   }
 
 
+
 }
 
 
@@ -120,6 +131,7 @@ public void attack()
 
   public void InputLeft()
   {
+    FindObjectOfType<AudioManager>().Play("PlayerMoving");
     switch (curentOrientation)
     {
       case 1:
@@ -140,6 +152,7 @@ public void attack()
 
   public void InputRight()
   {
+    FindObjectOfType<AudioManager>().Play("PlayerMoving");
     switch (curentOrientation)
     {
       case 1:
@@ -199,7 +212,10 @@ public void attack()
   }
 
 
-
+  public void playIdleSound()
+  {
+    FindObjectOfType<AudioManager>().Play("PlayerIdle");
+  }
 
 
 }

@@ -24,10 +24,13 @@ public class GameController : MonoBehaviour
     public Transform pointTwo;
     public LayerMask enemyLayers;
     public bool started = false;
-
+    int levelsUnloked = 1;
     int currentIndex = 0;
 
 
+    public GameObject activate;
+    public GameObject activateFOne;
+    public GameObject activateFTwo;
 
 
     int isExecutingNeeded = 0;
@@ -37,6 +40,7 @@ public class GameController : MonoBehaviour
 
 
     public int s = 0;
+    int indexSaveForEvedentiation = 0;
 
     SpawnButton sb;
     SpawnButton sbfOne;
@@ -47,7 +51,6 @@ public class GameController : MonoBehaviour
 
 
     public float timeForTimer = 1;
-    public float timeForEnemy = 1;
 
     MovementScript ms;
     MiniButton mb;
@@ -60,7 +63,6 @@ public class GameController : MonoBehaviour
 
 
     float timeRemaining = 1;
-    float timeRemainingForEnemy = 1;
 
     void Awake()
     {
@@ -70,7 +72,8 @@ public class GameController : MonoBehaviour
       order = PlayerPrefsExtra.GetList<Commands> ("order", new List<Commands>());
       orderFOne = PlayerPrefsExtra.GetList<Commands> ("orderFOne", new List<Commands>());
       orderFTwo = PlayerPrefsExtra.GetList<Commands> ("orderFTwo", new List<Commands>());
-      isExecutingNeeded = PlayerPrefs.GetInt("isExecutingNeeded");
+      levelsUnloked = PlayerPrefs.GetInt("levelsUnloked");
+
 
 
 
@@ -82,10 +85,16 @@ public class GameController : MonoBehaviour
 
       enemies = GameObject.FindGameObjectsWithTag("Enemy");
       nrOfEnemies = enemies.Length;
-      if(isExecutingNeeded > 0)
-      {
-        onStart();
+      isExecutingNeeded = PlayerPrefs.GetInt("isExecutingNeeded");
 
+
+
+
+      if(isExecutingNeeded == 1)
+      {
+        LeanTween.scale(gameObject,new Vector3(1,1,0), 0.1f).setOnComplete(onStart);
+      }else{
+        LeanTween.scale(gameObject,new Vector3(1,1,0), 0.1f);
       }
 
     }
@@ -94,7 +103,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
       checkIfGameOver();
-
+      showCurrentAction();
 
       if(started)
       {
@@ -106,6 +115,12 @@ public class GameController : MonoBehaviour
             else
             {
               matchAction();
+
+              enemies = GameObject.FindGameObjectsWithTag("Enemy");
+              foreach(GameObject enemi in enemies)
+              {
+                enemi.GetComponent<EnemyBase>().matchAction();
+              }
 
               timeRemaining = timeForTimer;
 
@@ -119,28 +134,17 @@ public class GameController : MonoBehaviour
 
       isExecutingNeeded = 0;
       PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
+      if(levelsUnloked < SceneManager.GetActiveScene().buildIndex)
+      {
+        levelsUnloked = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("levelsUnloked", levelsUnloked);
+      }
+
       mainCanvas.GetComponent<NextLevelUi>().ActivateUi();
 
-    }
-    if(started)
-    {
-
-
-        if(timeRemainingForEnemy > 0)
-        {
-          timeRemainingForEnemy -= Time.deltaTime;
-        }
-        else
-        {
-          enemies = GameObject.FindGameObjectsWithTag("Enemy");
-          foreach(GameObject enemi in enemies)
-          {
-            enemi.GetComponent<EnemyBase>().matchAction();
-          }
-          timeRemainingForEnemy = timeForEnemy;
-        }
 
     }
+
 
 
 
@@ -148,48 +152,68 @@ public class GameController : MonoBehaviour
 
       if (CrossPlatformInputManager.GetButtonDown("Start"))
       {
-        onStart();
+        FindObjectOfType<AudioManager>().Play("Click");
 
-        if(isExecutingNeeded > 0)
+        if(isExecutingNeeded == 1)
         {
-
           resetScene();
         }
-        else
-        {
-          isExecutingNeeded += 1;
-          PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
-        }
+
+
+        onStart();
+        PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
+
+        isExecutingNeeded = 1;
+
+
+
+
+
 
 
       }
+
       if(CrossPlatformInputManager.GetButtonDown("Left"))
       {
+        FindObjectOfType<AudioManager>().Play("Click");
+
         matchGrid(currentTab,Commands.left);
       }
       if(CrossPlatformInputManager.GetButtonDown("Right"))
       {
+        FindObjectOfType<AudioManager>().Play("Click");
+
         matchGrid(currentTab,Commands.right);
       }
       if(CrossPlatformInputManager.GetButtonDown("Move"))
       {
+        FindObjectOfType<AudioManager>().Play("Click");
+
         matchGrid(currentTab,Commands.move);
       }
       if(CrossPlatformInputManager.GetButtonDown("Attack"))
       {
+        FindObjectOfType<AudioManager>().Play("Click");
+
         matchGrid(currentTab,Commands.attack);
       }
 
       if(CrossPlatformInputManager.GetButtonDown("FOne"))
       {
+        FindObjectOfType<AudioManager>().Play("Click");
+
         matchGrid(currentTab,Commands.fOne);
       }
       if(CrossPlatformInputManager.GetButtonDown("FTwo"))
       {
+        FindObjectOfType<AudioManager>().Play("Click");
+
         matchGrid(currentTab,Commands.fTwo);
       }
       if(CrossPlatformInputManager.GetButtonDown("Reset"))
       {
+        FindObjectOfType<AudioManager>().Play("Click");
+
         isExecutingNeeded = 0;
         PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
         resetScene();
@@ -203,6 +227,7 @@ public class GameController : MonoBehaviour
     }
     void onStart()
     {
+
 
       currentOrder = order;
 
@@ -219,12 +244,44 @@ public class GameController : MonoBehaviour
       matchGrid(currentTab,Commands.nothing);
 
     }
+    void showCurrentAction()
+    {
+      mButtons = GameObject.FindGameObjectsWithTag("MiniButton");
+      foreach(GameObject button in mButtons)
+      {
+        switch (currentTab)
+        {
+          case 1:
+            //F1
+            button.GetComponent<MiniButton>().currentAction(currentIndex - 1,currentTab);
+            break;
+          case 2:
+            //F2
+            button.GetComponent<MiniButton>().currentAction(currentIndex - 1,currentTab);
+            break;
+          case 3:
+            //Main
+            if(indexSaveForEvedentiation > 0)
+            {
+              button.GetComponent<MiniButton>().currentAction(indexSaveForEvedentiation - 1,currentTab);
+            }
+            else{
+              button.GetComponent<MiniButton>().currentAction(currentIndex -1 ,currentTab);
+
+            }
+            break;
+        }
+      }
+    }
+
 
     void OnApplicationQuit()
     {
       order.Clear();
       orderFOne.Clear();
       orderFTwo.Clear();
+      isExecutingNeeded = 0;
+      PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
       saveOrders();
     }
     public void resetScene()
@@ -234,8 +291,10 @@ public class GameController : MonoBehaviour
 
     void matchAction()
     {
+      Debug.Log("current tab : " + currentTab);
       //Debug.Log("currentIndex : " + currentIndex);
       //Debug.Log("currentOrder.Count : " + currentOrder.Count);
+      showCurrentAction();
       if(currentOrder.Count > currentIndex)
       {
         //Normal command
@@ -247,13 +306,15 @@ public class GameController : MonoBehaviour
         //We are inside a function and returning from it
         //Debug.Log("inauntru la else if");
         pop();
+        activate.GetComponent<ActivateButton>().activatePanel();
+        activate.GetComponent<TabButton>().pressed();
 
       }
       else
       {
         //When finished
         started = false;
-        currentIndex = 0;
+        //currentIndex = 0;
       }
 
 }
@@ -265,11 +326,13 @@ public class GameController : MonoBehaviour
       arrayStack.Push(currentOrder);
       currentOrder = list;
       indexStack.Push(currentIndex);
+      indexSaveForEvedentiation = currentIndex;
       currentIndex = 0;
     }
 
     void pop()
     {
+      indexSaveForEvedentiation = 0;
       currentOrder = arrayStack.Pop();
       currentIndex = indexStack.Pop();
     }
@@ -294,11 +357,15 @@ public class GameController : MonoBehaviour
           break;
         case Commands.fOne:
            pushReplace(orderFOne);
+           activateFOne.GetComponent<ActivateButton>().activatePanel();
+           activateFOne.GetComponent<TabButton>().pressed();
 
-           Debug.Log("arrayStack : " + arrayStack.Count);
            break;
         case Commands.fTwo:
           pushReplace(orderFTwo);
+          activateFTwo.GetComponent<ActivateButton>().activatePanel();
+          activateFTwo.GetComponent<TabButton>().pressed();
+
           break;
       }
     }
@@ -416,8 +483,8 @@ public class GameController : MonoBehaviour
               break;
             case Commands.fTwo:
               //F2
-              sb.ord = s;
-              sb.sFTwo();
+              sbfOne.ord = s;
+              sbfOne.sFTwo();
               break;
           }
           s += 1;
@@ -462,13 +529,13 @@ public class GameController : MonoBehaviour
               break;
             case Commands.fOne:
               //F1
-              sbfOne.ord = s;
-              sbfOne.sFOne();
+              sbfTwo.ord = s;
+              sbfTwo.sFOne();
               break;
             case Commands.fTwo:
               //F2
-              sb.ord = s;
-              sb.sFTwo();
+              sbfTwo.ord = s;
+              sbfTwo.sFTwo();
               break;
           }
           s += 1;
@@ -491,7 +558,7 @@ public class GameController : MonoBehaviour
       {
         case 1:
           //F1
-          if(action > 0 & orderFOne.Count < maxCommands)
+          if(action > 0 & orderFOne.Count < maxCommands & started != true)
           {
             orderFOne.Add(action);
           }
@@ -500,7 +567,7 @@ public class GameController : MonoBehaviour
           break;
         case 2:
           //F2
-          if(action > 0 & orderFTwo.Count < maxCommands)
+          if(action > 0 & orderFTwo.Count < maxCommands & started != true)
           {
             orderFTwo.Add(action);
           }
@@ -509,7 +576,7 @@ public class GameController : MonoBehaviour
           break;
         case 3:
           //Main
-          if(action > 0 & order.Count < maxCommands)
+          if(action > 0 & order.Count < maxCommands & started != true)
           {
             order.Add(action);
           }
@@ -540,6 +607,17 @@ public class GameController : MonoBehaviour
       PlayerPrefsExtra.SetList("order", order);
       PlayerPrefsExtra.SetList("orderFOne", orderFOne);
       PlayerPrefsExtra.SetList("orderFTwo", orderFTwo);
+    }
+    public void clearLists()
+    {
+      if(started != true)
+      {
+        order.Clear();
+        orderFOne.Clear();
+        orderFTwo.Clear();
+        matchGrid(currentTab,0);
+      }
+
     }
 
 

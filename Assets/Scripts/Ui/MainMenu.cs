@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
   private List<int> orderFOne = new List<int>();
   private List<int> orderFTwo = new List<int>();
 
-
     void Awake()
     {
       PlayerPrefsExtra.SetList("order", order);
@@ -18,6 +17,7 @@ public class MainMenu : MonoBehaviour
       PlayerPrefsExtra.SetList("orderFTwo", orderFTwo);
       PlayerPrefs.SetInt("isExecutingNeeded", 0);
       Time.timeScale = 1f;
+      PlayerPrefs.SetInt("levelsUnloked", 87);
     }
 
 

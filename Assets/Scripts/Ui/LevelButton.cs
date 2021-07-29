@@ -2,24 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelButton : MonoBehaviour
 {
     [SerializeField]int index;
-    private bool haveBeenPressed = false;
-    public void moveLevelButtons()
+    int levelsUnloked;
+    Image image;
+    bool locked = false;
+    Text txt;
+    void Start()
     {
-      if(haveBeenPressed == false)
+      levelsUnloked = PlayerPrefs.GetInt("levelsUnloked");
+      if(levelsUnloked == 0)
       {
-        LeanTween.scale(gameObject,new Vector3(1,1,1), 0.1f);
-        LeanTween.move(gameObject,transform.position - new Vector3(500,0,0), 0.1f);
+        levelsUnloked = 1;
       }
-      haveBeenPressed = true;
+      txt = GetComponentInChildren<Text>();
+      txt.fontSize = 30;
+      txt.text = string.Format("lvl {0}",index);
+      image = GetComponent<Image>();
+      if(index > levelsUnloked)
+      {
+        txt.text = string.Format(" ");
+        image.color = new Color32(0,0,0,255);
+        locked = true;
+      }
     }
 
     public void loadLevel()
     {
+      if(locked == false)
+      {
+        LeanTween.scale(gameObject,new Vector3(20,20,1), 0.1f).setOnComplete(ld);
+        FindObjectOfType<AudioManager>().Play("Click");
+      }
+
+    }
+    void ld()
+    {
       SceneManager.LoadScene(sceneBuildIndex:index);
     }
+
+
 
 }

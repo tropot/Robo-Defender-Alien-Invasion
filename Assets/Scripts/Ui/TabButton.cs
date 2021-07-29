@@ -19,6 +19,7 @@ public class TabButton : MonoBehaviour
 
     public void pressed()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
       tabGroup.OnTabSelected(this);
       gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
       gc.matchGrid(gc.currentTab,0);

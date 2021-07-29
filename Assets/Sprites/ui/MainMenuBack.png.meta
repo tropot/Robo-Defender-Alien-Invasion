@@ -128,9 +128,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2160
-        width: 1920
-        height: 1080
+        y: 364
+        width: 364
+        height: 364
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,10 +148,10 @@ TextureImporter:
       name: MainMenuBack_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1080
-        width: 1920
-        height: 1080
+        x: 37
+        y: 101
+        width: 268
+        height: 131
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,27 +161,6 @@ TextureImporter:
       bones: []
       spriteID: 492ca86c045bb1410800000000000000
       internalID: 1448950994943263380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MainMenuBack_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a60650cedd648c30800000000000000
-      internalID: 4360731142678513313
       vertices: []
       indices: 
       edges: []

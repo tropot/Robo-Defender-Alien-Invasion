@@ -42,6 +42,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
       pauseMenuUi.SetActive(false);
       Time.timeScale = gameSpeed;
       GameIsPaused = false;
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
       pauseMenuUi.SetActive(true);
       Time.timeScale = 0f;
       GameIsPaused = true;
@@ -56,12 +58,14 @@ public class PauseMenu : MonoBehaviour
 
     public void goToMainMenu()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
       GameIsPaused = false;
       Time.timeScale = gameSpeed;
       SceneManager.LoadScene(sceneBuildIndex:0);
     }
     public void setGameSpeed()
     {
+      FindObjectOfType<AudioManager>().Play("Click");
       if(gameSpeed == 1f)
       {
         gameSpeed = 2f;
