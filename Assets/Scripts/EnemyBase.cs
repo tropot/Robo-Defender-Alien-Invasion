@@ -9,7 +9,6 @@ public class EnemyBase : MonoBehaviour
     int i = 0;
     public List<int> order = new List<int>();
     public bool isBig = false;
-    float timeRemaining = 0.1f;
     GameController gc;
     private bool Died = false;
     string[] soundNames = new string[]{"EnemiSoundOne","EnemiSoundTwo","EnemiSoundThre"};
@@ -24,27 +23,19 @@ public class EnemyBase : MonoBehaviour
 
     void Update()
     {
-      if (timeRemaining > 0)
+
+
+      if(isBig == true)
       {
-        timeRemaining -= Time.deltaTime;
+          ms.attack();
       }
       else
       {
-        if(isBig == true)
-        {
-          ms.attack();
-        }
-        else
-        {
           ms.enemiBoom();
-          
-
-        }
-
-        timeRemaining = 0.1f;
-
-        //started = false;
       }
+
+
+
     }
 
     public void TakeDamage()

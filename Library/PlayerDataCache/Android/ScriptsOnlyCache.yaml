@@ -58,12 +58,15 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateMachineNode
     - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEditor.UI.dll:
+    - UnityEditor.UI.GridLayoutGroupEditor
+    - UnityEditor.UI.ImageEditor
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.EventTrigger
@@ -2232,7 +2235,7 @@ ScriptsOnlyBuild:
     className: AudioManager
   - hash:
       serializedVersion: 2
-      Hash: d4a33899a359e4da080a587729e55670
+      Hash: d661f5994eb5e26c956ba3c5dd91835e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemiAttack
@@ -2604,7 +2607,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: 0f6c553b2faeb0a6fca4a48a5befe4e4
+      Hash: bff62bae0f7a8db29634b37787e9c6a4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SkinSelector
@@ -2640,7 +2643,7 @@ ScriptsOnlyBuild:
     className: InputAxisScrollbar
   - hash:
       serializedVersion: 2
-      Hash: cf91b75caaad7a673d362cd308e0db43
+      Hash: 757af48f734f40bd0bef80388c4287b9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MovementScript

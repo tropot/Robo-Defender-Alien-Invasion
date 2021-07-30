@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
     public bool started = false;
     int levelsUnloked = 1;
     int currentIndex = 0;
+    
 
 
     public GameObject activate;

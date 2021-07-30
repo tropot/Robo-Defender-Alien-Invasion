@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ms: {fileID: 8454863570989254262}
-  maxHealth: 2
   order: 
   isBig: 1
 --- !u!114 &6722135452019463391
@@ -201,6 +200,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   baseScript: {fileID: 5097814125956662077}
+  anim: {fileID: 5097814125956662076}
 --- !u!114 &8454863570989254262
 MonoBehaviour:
   m_ObjectHideFlags: 0

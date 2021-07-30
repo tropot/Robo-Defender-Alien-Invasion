@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MovementScript : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class MovementScript : MonoBehaviour
   public Sprite[] towerSprites;
   public GameObject towerSprite;
   private int currentBaseSprite = 0;
-
+  public GameObject panel;
+  bool dead = false;
+  byte cl;
 
 
   void Awake()
@@ -43,7 +46,11 @@ public class MovementScript : MonoBehaviour
   void Update()
   {
 
-
+      if(dead == true)
+      {
+        panel.GetComponent<Image>().color = new Color32(255,0,0,cl);
+        cl += 1;
+      }
 
       transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
@@ -67,7 +74,12 @@ public class MovementScript : MonoBehaviour
   }
   public void animateDeath()
   {
-    animator.Play("Player_death");
+      animator.SetTrigger("Died");
+      panel.GetComponent<Image>().color = new Color32(255,0,0,0);
+
+      dead = true;
+      FindObjectOfType<AudioManager>().Play("PlayerDeath");
+
   }
 
   public void move()

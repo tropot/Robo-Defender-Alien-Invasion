@@ -46,7 +46,7 @@ MonoBehaviour:
   sounds:
   - name: EnemiDeath
     clip: {fileID: 8300000, guid: 3e28f801600f9cbd49ac47201f108472, type: 3}
-    volume: 1
+    volume: 0.133
     pitch: 3
     source: {fileID: 0}
   - name: EnemiSoundOne
@@ -76,21 +76,26 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Attack
     clip: {fileID: 8300000, guid: f27a8fde73475c855895672195d36642, type: 3}
-    volume: 1
+    volume: 0.213
     pitch: 3
     source: {fileID: 0}
   - name: AttackWide
     clip: {fileID: 8300000, guid: 5272f8c0f4e889f788e468fd49c2f1ac, type: 3}
-    volume: 1
+    volume: 0.106
     pitch: 3
     source: {fileID: 0}
   - name: AttackLong
     clip: {fileID: 8300000, guid: dfc8cdfbfb78d8408a97099e2c398dad, type: 3}
-    volume: 1
-    pitch: 3
+    volume: 0.067
+    pitch: 1.47
     source: {fileID: 0}
   - name: Click
     clip: {fileID: 8300000, guid: 0fbbeaf87495811e18a28e715b35f5f3, type: 3}
-    volume: 1
+    volume: 0.57
+    pitch: 3
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 800527690c861e4818827f9c4e14a433, type: 3}
+    volume: 0.166
     pitch: 3
     source: {fileID: 0}

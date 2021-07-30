@@ -6,16 +6,26 @@ using UnityEngine.UI;
 public class SkinSelector : MonoBehaviour
 {
     public Sprite[] baseSprites;
-    public Sprite[] towerSprites;
+    public Tower[] towerSprites;
     public GameObject baseComponent;
     public GameObject towerSprite;
     private int currentBaseSprite = 0;
     private int currentTower = 0;
+    int levelsUnloked;
+    public Text txt;
 
     void Start()
     {
+      levelsUnloked = PlayerPrefs.GetInt("levelsUnloked");
       currentBaseSprite = PlayerPrefs.GetInt("currentBaseSprite");
       currentTower = PlayerPrefs.GetInt("currentTower");
+      foreach(Tower tover in towerSprites)
+      {
+        if(tover.levelsNeededToUnlock <= levelsUnloked)
+        {
+          tover.isUnlocked = true;
+        }
+      }
       SetTower(currentTower);
       SetSprite(currentBaseSprite);
     }
@@ -26,12 +36,23 @@ public class SkinSelector : MonoBehaviour
     }
     void SetTower(int index)
     {
-      towerSprite.GetComponent<Image> ().sprite = towerSprites[index];
+      if(towerSprites[currentTower].isUnlocked == false)
+      {
+        towerSprite.GetComponent<Image> ().color = new Color32(0,0,0,255);
+
+        txt.text = string.Format("{0}",towerSprites[currentTower].whatNeedsToBeDoneToUnlock);
+      }
+      else{
+        towerSprite.GetComponent<Image> ().color = new Color32(255,255,255,255);
+        PlayerPrefs.SetInt("currentTower", currentTower);
+        txt.text = string.Format("Selected");
+      }
+      towerSprite.GetComponent<Image> ().sprite = towerSprites[index].sprite;
     }
     public void NextRSprite()
     {
       FindObjectOfType<AudioManager>().Play("Click");
-      
+
       currentBaseSprite += 1;
       if(currentBaseSprite >= baseSprites.Length)
       {
@@ -67,7 +88,6 @@ public class SkinSelector : MonoBehaviour
         currentTower = 0;
       }
       SetTower(currentTower);
-      PlayerPrefs.SetInt("currentTower", currentTower);
 
     }
     public void NextLTower()
@@ -83,7 +103,7 @@ public class SkinSelector : MonoBehaviour
         currentTower -= 1;
       }
       SetTower(currentTower);
-      PlayerPrefs.SetInt("currentTower", currentTower);
+
 
     }
 

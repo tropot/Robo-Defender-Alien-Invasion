@@ -535,6 +535,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   baseScript: {fileID: 7165397774491508446}
+  anim: {fileID: 7165397774491508441}
 --- !u!114 &2692871707089805764
 MonoBehaviour:
   m_ObjectHideFlags: 0

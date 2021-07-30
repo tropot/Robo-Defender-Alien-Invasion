@@ -8,6 +8,8 @@ public class EnemiAttack : MonoBehaviour
   public float attackRange = 0.5f;
   public LayerMask playerLayer;
   public GameObject baseScript;
+  public Animator anim;
+  private Collider2D[] hitPlayer;
 
 
 
@@ -20,14 +22,14 @@ public class EnemiAttack : MonoBehaviour
   }
   public void enemyAttack()
   {
-    Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+    hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
 
     foreach(Collider2D player in hitPlayer)
     {
-      player.GetComponent<MovementScript>().animateDeath();
+      anim.SetTrigger("attack");
     }
   }
-  
+
   public void enemyGoesBoom()
   {
     Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
@@ -35,6 +37,22 @@ public class EnemiAttack : MonoBehaviour
     foreach(Collider2D player in hitPlayer)
     {
       baseScript.GetComponent<EnemyBase>().TakeDamage();
+    }
+  }
+  public void playerTakeDamage()
+  {
+    foreach(Collider2D player in hitPlayer)
+    {
+      player.GetComponent<MovementScript>().animateDeath();
+    }
+  }
+  public void StataicAttack()
+  {
+    Collider2D[] htPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+
+    foreach(Collider2D player in htPlayer)
+    {
+      player.GetComponent<MovementScript>().animateDeath();
     }
   }
 }

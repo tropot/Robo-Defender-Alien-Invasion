@@ -44,7 +44,7 @@ public class EnemiMovementScript : MonoBehaviour
   }
 
 
-  
+
   public void animateDeath()
   {
     animator.SetTrigger("Death");
@@ -67,7 +67,7 @@ public class EnemiMovementScript : MonoBehaviour
 
 public void attack()
 {
-
+  
   attackScript.enemyAttack();
 
 }
