@@ -127,10 +127,10 @@ TextureImporter:
       name: Rocks_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 9
-        width: 59
-        height: 53
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,10 +148,10 @@ TextureImporter:
       name: Rocks_1
       rect:
         serializedVersion: 2
-        x: 76
-        y: 11
-        width: 46
-        height: 37
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: Rocks_2
       rect:
         serializedVersion: 2
-        x: 137
-        y: 3
-        width: 55
-        height: 51
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

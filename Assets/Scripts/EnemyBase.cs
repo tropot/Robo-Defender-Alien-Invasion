@@ -7,13 +7,14 @@ public class EnemyBase : MonoBehaviour
 
     public EnemiMovementScript ms;
     int i = 0;
-    public List<int> order = new List<int>();
+    public List<Commands> order = new List<Commands>();
     public bool isBig = false;
     GameController gc;
     private bool Died = false;
     string[] soundNames = new string[]{"EnemiSoundOne","EnemiSoundTwo","EnemiSoundThre"};
     string soundName;
     int randomNr;
+    float timeRemaining = 0.55f;
 
     void Start()
     {
@@ -23,6 +24,19 @@ public class EnemyBase : MonoBehaviour
 
     void Update()
     {
+
+
+      if(Died)
+      {
+        if (timeRemaining > 0)
+        {
+          timeRemaining -= Time.deltaTime;
+        }
+        else
+        {
+          Die();
+        }
+      }
 
 
       if(isBig == true)
@@ -66,21 +80,17 @@ public class EnemyBase : MonoBehaviour
         FindObjectOfType<AudioManager>().Play(soundName);
         switch (order[i])
         {
-          case 1:
+          case Commands.move:
             //move
             ms.move();
             break;
-          case 2:
+          case Commands.right:
             //right
             ms.InputRight();
             break;
-          case 3:
+          case Commands.left:
             //left
             ms.InputLeft();
-            break;
-          case 4:
-            //attack
-            //ms.attack();
             break;
         }
         i += 1;

@@ -337,10 +337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSprites:
   - {fileID: -9092141972978691335, guid: ce832b970a5500137ae380f1c8d8d305, type: 3}
-  - {fileID: -4136437241296132230, guid: ce832b970a5500137ae380f1c8d8d305, type: 3}
-  - {fileID: 8789394829289065178, guid: ce832b970a5500137ae380f1c8d8d305, type: 3}
-  - {fileID: 6162171749372425639, guid: ce832b970a5500137ae380f1c8d8d305, type: 3}
-  - {fileID: 7165661769010061196, guid: ce832b970a5500137ae380f1c8d8d305, type: 3}
   towerSprites:
   - sprite: {fileID: -2230050834565075825, guid: 903a834d5ec115dacb7ac85ba12fb5c7, type: 3}
     isUnlocked: 0

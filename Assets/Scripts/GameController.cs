@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     public bool started = false;
     int levelsUnloked = 1;
     int currentIndex = 0;
-    
+
 
 
     public GameObject activate;
@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
 
 
     }
-    if(nrOfEnemies == 0)
+    if(nrOfEnemies == 0 & ms.dead == false)
     {
 
       isExecutingNeeded = 0;
@@ -292,9 +292,11 @@ public class GameController : MonoBehaviour
 
     void matchAction()
     {
-      Debug.Log("current tab : " + currentTab);
-      //Debug.Log("currentIndex : " + currentIndex);
-      //Debug.Log("currentOrder.Count : " + currentOrder.Count);
+      if(ms.dead == true)
+      {
+        started = false;
+        return;
+      }
       showCurrentAction();
       if(currentOrder.Count > currentIndex)
       {

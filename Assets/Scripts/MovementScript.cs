@@ -26,8 +26,8 @@ public class MovementScript : MonoBehaviour
   public GameObject towerSprite;
   private int currentBaseSprite = 0;
   public GameObject panel;
-  bool dead = false;
-  byte cl;
+  public bool dead = false;
+  byte cl = 0;
 
 
   void Awake()
@@ -49,7 +49,13 @@ public class MovementScript : MonoBehaviour
       if(dead == true)
       {
         panel.GetComponent<Image>().color = new Color32(255,0,0,cl);
+        if(cl > 100)
+        {
+          death();
+        }
         cl += 1;
+
+
       }
 
       transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
@@ -74,11 +80,16 @@ public class MovementScript : MonoBehaviour
   }
   public void animateDeath()
   {
-      animator.SetTrigger("Died");
-      panel.GetComponent<Image>().color = new Color32(255,0,0,0);
+      if(dead == false)
+      {
+        animator.Play("Player_death");
+        panel.GetComponent<Image>().color = new Color32(255,0,0,0);
+        moveSpeed = 0;
+        rotSpeed = 0;
+        dead = true;
+        FindObjectOfType<AudioManager>().Play("PlayerDeath");
+      }
 
-      dead = true;
-      FindObjectOfType<AudioManager>().Play("PlayerDeath");
 
   }
 

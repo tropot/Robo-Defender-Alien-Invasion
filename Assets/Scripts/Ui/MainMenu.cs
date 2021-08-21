@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
       PlayerPrefsExtra.SetList("orderFTwo", orderFTwo);
       PlayerPrefs.SetInt("isExecutingNeeded", 0);
       Time.timeScale = 1f;
-      PlayerPrefs.SetInt("levelsUnloked", 1);
+      PlayerPrefs.SetInt("levelsUnloked", 99);
     }
 
 

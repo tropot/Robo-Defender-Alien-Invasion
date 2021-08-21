@@ -28,8 +28,12 @@ public class MiniButton : MonoBehaviour
   {
     FindObjectOfType<AudioManager>().Play("Click");
     gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-    gc.listEdit(idMini);
-    gc.matchGrid(gc.currentTab,0);
+    if(gc.started == false)
+    {
+      gc.listEdit(idMini);
+      gc.matchGrid(gc.currentTab,0);
+    }
+
   }
   public void des()
   {
