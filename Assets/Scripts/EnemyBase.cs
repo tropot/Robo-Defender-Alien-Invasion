@@ -8,7 +8,6 @@ public class EnemyBase : MonoBehaviour
     public EnemiMovementScript ms;
     int i = 0;
     public List<Commands> order = new List<Commands>();
-    public bool isBig = false;
     GameController gc;
     private bool Died = false;
     string[] soundNames = new string[]{"EnemiSoundOne","EnemiSoundTwo","EnemiSoundThre"};
@@ -39,14 +38,8 @@ public class EnemyBase : MonoBehaviour
       }
 
 
-      if(isBig == true)
-      {
-          ms.attack();
-      }
-      else
-      {
-          ms.enemiBoom();
-      }
+
+      ms.attack();
 
 
 

@@ -67,15 +67,12 @@ public class EnemiMovementScript : MonoBehaviour
 
 public void attack()
 {
-  
+
   attackScript.enemyAttack();
 
 }
 
-public void enemiBoom()
-{
-  attackScript.enemyGoesBoom();
-}
+
 
 
   public void InputLeft()

@@ -30,15 +30,7 @@ public class EnemiAttack : MonoBehaviour
     }
   }
 
-  public void enemyGoesBoom()
-  {
-    Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
-
-    foreach(Collider2D player in hitPlayer)
-    {
-      baseScript.GetComponent<EnemyBase>().TakeDamage();
-    }
-  }
+  
   public void playerTakeDamage()
   {
     foreach(Collider2D player in hitPlayer)

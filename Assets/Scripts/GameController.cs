@@ -104,6 +104,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
       checkIfGameOver();
+
       showCurrentAction();
 
       if(started)
@@ -596,13 +597,16 @@ public class GameController : MonoBehaviour
     }
     public void checkIfGameOver()
     {
-      Collider2D[] hitEnemys = Physics2D.OverlapAreaAll(pointOne.position,pointTwo.position, enemyLayers);
-
-      foreach(Collider2D enemy in hitEnemys)
+      enemies = GameObject.FindGameObjectsWithTag("Enemy");
+      foreach(GameObject enemy in enemies)
       {
-        isExecutingNeeded = 0;
-        PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
-        resetScene();
+        if(enemy.transform.position.x <= -5)
+        {
+          isExecutingNeeded = 0;
+          PlayerPrefs.SetInt("isExecutingNeeded", isExecutingNeeded);
+          resetScene();
+        }
+
       }
     }
     public void saveOrders()
