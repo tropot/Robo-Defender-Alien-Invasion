@@ -23,7 +23,7 @@ public class ScriptForAnimatingEveryButtons : MonoBehaviour
     }
     public void levelSelect()
     {
-      SceneManager.LoadScene(sceneBuildIndex:16);
+      SceneManager.LoadScene("LevelSelector");
     }
 
 

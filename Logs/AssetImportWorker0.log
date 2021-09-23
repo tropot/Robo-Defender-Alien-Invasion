@@ -1029,3 +1029,111 @@ Total: 7.073716 ms (FindLiveObjects: 0.499209 ms CreateObjectMapping: 0.131861 m
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 105076.535547 seconds.
+  path: Assets/Scripts/Ui/ScriptForAnimatingEveryButtons.cs
+  artifactKey: Guid(49d6ff7dd0d7ab997bd4973801d40c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ui/ScriptForAnimatingEveryButtons.cs using Guid(49d6ff7dd0d7ab997bd4973801d40c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f8eb7a423cb2ba0e673cb2e0d5fdf09') in 0.048685 seconds
+  Import took 0.068815 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.233267 seconds.
+  path: Assets/Scripts/Ui/SkinSelector.cs
+  artifactKey: Guid(b7986adfd81697f7083037263db61f2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ui/SkinSelector.cs using Guid(b7986adfd81697f7083037263db61f2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0761be0034d1d36792ba31d54929ce4') in 0.001444 seconds
+  Import took 0.007620 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.041489 seconds.
+  path: Assets/Scripts/Ui/SkinSelector.cs
+  artifactKey: Guid(b7986adfd81697f7083037263db61f2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ui/SkinSelector.cs using Guid(b7986adfd81697f7083037263db61f2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0761be0034d1d36792ba31d54929ce4') in 0.001753 seconds
+  Import took 0.007629 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.987641 seconds.
+  path: Assets/Scenes/MainMenu.unity
+  artifactKey: Guid(8576a8fbd3a66b82ab517c63a47feb9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/MainMenu.unity using Guid(8576a8fbd3a66b82ab517c63a47feb9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed1c222a5361deee144284173384404b') in 0.480283 seconds
+  Import took 0.537390 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.352916 seconds.
+  path: Assets/Scenes/Levels/Level 16.unity
+  artifactKey: Guid(45536a4c62c99fc5d838b1d7e3434b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Levels/Level 16.unity using Guid(45536a4c62c99fc5d838b1d7e3434b84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c4a15622f3d27e57c26ff215a0775a6') in 0.002314 seconds
+  Import took 0.008913 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001797 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.02 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.452 seconds
+Platform modules already initialized, skipping
+Switching build target platform(24) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.95 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1951 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.0 MB.
+System memory in use after: 86.0 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2525.
+Total: 5.714163 ms (FindLiveObjects: 0.533860 ms CreateObjectMapping: 0.133805 ms MarkObjects: 4.725776 ms  DeleteObjects: 0.316679 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 201.273815 seconds.
+  path: Assets/Scripts/Ui/ScriptForAnimatingEveryButtons.cs
+  artifactKey: Guid(49d6ff7dd0d7ab997bd4973801d40c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ui/ScriptForAnimatingEveryButtons.cs using Guid(49d6ff7dd0d7ab997bd4973801d40c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33f0f9629f4cd92735bdb9b65c1086a9') in 0.011533 seconds
+  Import took 0.018493 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002723 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.89 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.340 seconds
+Platform modules already initialized, skipping
+Switching build target platform(24) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.94 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1951 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 86.0 MB.
+System memory in use after: 86.0 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2529.
+Total: 4.766885 ms (FindLiveObjects: 0.485138 ms CreateObjectMapping: 0.104884 ms MarkObjects: 3.890826 ms  DeleteObjects: 0.282958 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 4.81 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 10 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 47.4 MB.
+System memory in use after: 47.4 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2529.
+Total: 6.555648 ms (FindLiveObjects: 0.540371 ms CreateObjectMapping: 0.130950 ms MarkObjects: 5.447471 ms  DeleteObjects: 0.313744 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
